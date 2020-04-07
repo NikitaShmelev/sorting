@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('bubble', views.bubble, name='bubble'),
-    path('insertion', views.insertion, name='insertion'),
-    path('merge', views.merge, name='merge'),
+    path('algorithm', views.algorithm, name='algorithm'),
+    # path('algorithm/bubble', HomePageViews.bubble, name='bubble'),
+    # path('algorithm/insertion', HomePageViews.insertion, name='insertion'),
+    # path('algorithm/merge', HomePageViews.merge, name='merge'),
 ]

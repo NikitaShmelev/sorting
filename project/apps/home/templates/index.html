@@ -12,14 +12,14 @@
     <div class='container'>
         <center>
         
-        <form action="//www.html.am/html-codes/forms/html-form-tag-action.cfm" target="result" method="get">
-            
-            <p>What would you like for lunch?</p>
+        <form action="{% url 'algorithm' %}" method='POST'>
+            {% csrf_token %}
+            <p>What algorithm would you like to use for sorting?</p>
 
             <select name="algorithm">
-                <option value ="none">Bubble</option>
-                <option value ="guava">Insertion</option>
-                <option value ="lychee">Merge</option>
+                <option>Bubble</option>
+                <option>Insertion</option>
+                <option>Merge</option>
             </select> <br>
             <!-- <input type="file"> -->
             <p><input type="submit" value="Submit"></p>
@@ -29,7 +29,9 @@
             
         <h3>Result:</h3>
             
-        <iframe name="result" style="height:100px;width:200px;"></iframe>
+        <iframe name="result" style="height:100px;width:200px;">
+            
+        </iframe>
 
         </center>
     </div>

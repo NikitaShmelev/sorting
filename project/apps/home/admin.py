@@ -4,7 +4,7 @@ from .models import Sorting
 
 
 @admin.register(Sorting)
-class FeedbackAdmin(admin.ModelAdmin):
+class SortingAdmin(admin.ModelAdmin):
     list_display = (
         'algorithm', 
         'numbers',
