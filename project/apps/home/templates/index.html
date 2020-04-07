@@ -4,13 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Home page</title>
 </head>
 <body>
 
-    <div class='form'>
-s
+    <div class='container'>
+        <center>
+        
+        <form action="//www.html.am/html-codes/forms/html-form-tag-action.cfm" target="result" method="get">
+            
+            <p>What would you like for lunch?</p>
+
+            <select name="algorithm">
+                <option value ="none">Bubble</option>
+                <option value ="guava">Insertion</option>
+                <option value ="lychee">Merge</option>
+            </select> <br>
+            <!-- <input type="file"> -->
+            <p><input type="submit" value="Submit"></p>
+            
+        </form>
+        
+            
+        <h3>Result:</h3>
+            
+        <iframe name="result" style="height:100px;width:200px;"></iframe>
+
+        </center>
     </div>
     
 </body>
