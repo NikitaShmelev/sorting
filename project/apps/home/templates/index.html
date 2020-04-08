@@ -5,36 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/button.scss' %}">
     <title>Home page</title>
 </head>
 <body>
-
+    
     <div class='container'>
-        <center>
-        
-        <form action="{% url 'algorithm' %}" method='POST'>
-            {% csrf_token %}
-            <p>What algorithm would you like to use for sorting?</p>
+            <h2 align='center'>What algorithm would you like to use for sorting?</h2>
 
-            <select name="algorithm">
+            {% if messages %}
+                {% for message in messages %}  
+                    <li class="alert" role="alert">
+                    {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        <form action="{% url 'algorithm' %}" method='POST'>
+
+            {% csrf_token %}
+            <div class="select-box">
+                <select name="algorithm" id="select-box1" class="select">
                 <option>Bubble</option>
                 <option>Insertion</option>
                 <option>Merge</option>
             </select> <br>
-            <!-- <input type="file"> -->
-            <p><input type="submit" value="Submit"></p>
             
+            </div>
+            <div class="file-field">
+                
+            </div>
+            <!-- <input type="file"> -->
+            <center>
+            <button type="submit" class="btn-primary">Sort</button>
+            </center>
         </form>
         
-            
-        <h3>Result:</h3>
-            
-        <iframe name="result" style="height:100px;width:200px;">
-            
-        </iframe>
-
-        </center>
+       
     </div>
-    
+    <p><a href="images/xxx.jpg" download>Download file example</a>
 </body>
 </html>
