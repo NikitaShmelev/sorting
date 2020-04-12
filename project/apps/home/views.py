@@ -12,38 +12,47 @@ from .algorithms import Algorithm
 from random import randint
 
 
-def index(request):
-    return render(request, 'index.html')
+
+class  HomePageViews(Algorithm):
 
 
-def algorithm(request):
-    try:
-        if request.method == 'POST':
-            file = request.FILES['sentFile'].open()
-            list_to_sort = [int(i) for i in file.readline().decode("utf-8").split(',')]
-            sort = SortingForm(request.POST)['algorithm'].value()
-            if sort == 'Bubble':
-                result = Algorithm().bubble(list_to_sort)
-            elif sort == 'Insertion':
-                result = Algorithm().insertion(list_to_sort)
-            else:
-                result = Algorithm().merge(list_to_sort)
-            record = Sorting(
-                algorithm=getattr(Sorting, sort),
-                numbers=result[0],
-            )
-            record.save_base()
-            messages.success(
-                request, 
-                f"\n\nExecution time is {round(result[1], 5)} seconds\n\n"
+    def index(request):
+        return render(request, 'index.html')
+
+
+    def algorithm(request):
+        try:
+            if request.method == 'POST':
+                
+                file = request.FILES['sentFile'].open()
+                list_to_sort = [int(i) for i in file.readline().decode("utf-8").split(',')]
+                
+                sort = SortingForm(request.POST)['algorithm'].value()
+                if sort == 'Bubble':
+                    result = Algorithm().bubble(list_to_sort)
+                elif sort == 'Insertion':
+                    result = Algorithm().insertion(list_to_sort)
+                else:
+                    result = Algorithm().merge(list_to_sort)
+                record = Sorting(
+                    algorithm=getattr(Sorting, sort),
+                    numbers=result[0],
                 )
-    except:        
-        messages.warning(
-            request, 
-            f"\n\nUpload correct file in txt format\n\n"
-            )
-        
-    return HttpResponseRedirect("../../")
+                record.save_base()
+                
+                messages.success(
+                    request, 
+                    f"\n\nExecution time is {round(result[1], 5)} seconds\n\n"
+                    )
+                print(dir(messages))
+
+        except:        
+            messages.warning(
+                request, 
+                f"\n\nUpload correct file in txt format\n\n"
+                )
+            
+        return HttpResponseRedirect("../../")
     
 
 

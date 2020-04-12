@@ -9,4 +9,5 @@ class SortingAdmin(admin.ModelAdmin):
         'algorithm', 
         'numbers',
         )
+    list_filter = ('algorithm',)
     form = SortingForm
