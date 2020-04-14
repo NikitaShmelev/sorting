@@ -1,6 +1,12 @@
 from .decorator import measure_execution_time
 from django.contrib import messages
+from os import listdir
 
+
+def create_file(list_to_sort):
+    file = open('project/apps/home/static/files/sorted_file.txt', 'w')
+    file.write(','.join([str(i) for i in list_to_sort]))
+    file.close()
 
 class Algorithm:
 
@@ -23,6 +29,7 @@ class Algorithm:
                     list_to_sort[j + 1] = list_to_sort[j] 
                     j -= 1
             list_to_sort[j + 1] = key 
+        create_file(list_to_sort)
         return list_to_sort
        
 
@@ -55,4 +62,22 @@ class Algorithm:
                     j += 1
                     k += 1
             return list_to_sort
-        return mergeSort(list_to_sort)
+        list_to_sort = mergeSort(list_to_sort)
+        create_file(list_to_sort)
+        return list_to_sort
+
+
+    @measure_execution_time
+    def shell(self, list_to_sort):
+        gap = len(list_to_sort) // 2
+        while gap > 0:
+            for i in range(gap, len(list_to_sort)):
+                temp = list_to_sort[i]
+                j = i
+            while j >= gap and list_to_sort[j - gap] > temp:
+                list_to_sort[j] = list_to_sort[j - gap]
+                j = j-gap
+            list_to_sort[j] = temp
+            gap = gap//2
+        create_file(list_to_sort)
+        return list_to_sort
