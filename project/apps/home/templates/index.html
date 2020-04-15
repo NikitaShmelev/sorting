@@ -20,7 +20,7 @@
             <h2 align='center'> What algorithm would you like to use for sorting?</h2>
 
             {% if messages %}
-                {% for message in messages %}  
+                {% for message in messages %}
                 <li{% if message.tags %} class="alert alert-{{ message.tags }}" role="alert" style="list-style: none; text-align:center;"{% endif %}>
                     {{ message }}
                     </li>
@@ -44,11 +44,25 @@
                 </div>
             </center>
             <center>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <button class="btn" style='background-color:green;'><i class="fa fa-download"></i>
+                        <a class='download' href="static/files/sorted_file.txt" download>
+                            Download sorted file
+                        </a>
+                    </button>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
             <button class="btn"><i class="fa fa-download"></i>
                 <a class='download' href="static/files/example/example.txt" download>
                     Download file example
                 </a>
             </button>
+            
+            
             </center>
             </div>
             

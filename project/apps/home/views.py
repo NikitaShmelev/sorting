@@ -41,18 +41,19 @@ class  HomePageViews(Algorithm):
                     numbers=result[0],
                 )
                 record.save_base()
-                print(messages.success.__name__)
+                
                 messages.success(
                     request, 
                     f"\n\nExecution time is {round(result[1], 5)} seconds\n\n"
                     )
 
-        except:        
+        except:
             messages.warning(
                 request, 
                 f"\n\nUpload correct file in txt format\n\n"
                 )
-            
+        
+        
         return HttpResponseRedirect("../../")
     
 
