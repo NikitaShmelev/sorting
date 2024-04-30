@@ -1,4 +1,7 @@
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,41 +12,20 @@
     <title>Home page</title>
 </head>
 <body>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('div input').change(function () {
-              $('div p').text(this.files.length + " file selected");
-            });
-          });
-    </script>
     <div class='container'>
-            <h2 align='center'> What algorithm would you like to use for sorting?</h2>
-
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li{% if message.tags %} class="alert alert-{{ message.tags }}" role="alert" style="list-style: none; text-align:center;"{% endif %}>
-                    {{ message }}
-                    </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit" class="btn-primary">Sort</button>
-                <button class="btn"><i class="fa fa-download"></i>
-                    <a class='download' href="static/files/example/example.txt" download>
-                        Download file example
-                    </a>
-                </button>
-            </form>
-
-
 
             <div class="row">
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="alert alert-{{ message.tags }}" role="alert" style="list-style: none; text-align:center;"{% endif %}>
+                        {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <div class="col-md-6 offset-md-3">
-                    <h2>Algorithm Form</h2>
+                    <h2 align='center'> What algorithm would you like to use for sorting?</h2>
                     <form method="post" enctype="multipart/form-data" id="algorithmForm">
                         {% csrf_token %}
                         <div class="form-group">
@@ -61,14 +43,14 @@
                                 <div class="file-drop-text">Drag & Drop files here or click to select</div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn-primary">Sort</button>
+                        <button class="btn"><i class="fa fa-download"></i>
+                            <a class='download' href="static/files/example/example.txt" download>
+                                Download file example
+                            </a>
+                        </button>
                     </form>
                 </div>
             </div>
-
-
-
-
-
 </body>
 </html>

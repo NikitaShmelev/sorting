@@ -21,7 +21,7 @@ class HomePageView(TemplateView):
         context["form"] = SortingForm()
         return context
 
-    def algorithm(request):
+    def post(self, request, *args, **kwargs):
         try:
             if request.method == "POST":
                 file = request.FILES["sentFile"].open()
@@ -31,25 +31,20 @@ class HomePageView(TemplateView):
 
                 sort = SortingForm(request.POST)["algorithm"].value()
                 if sort == "Bubble":
-                    result = Algorithm().bubble(list_to_sort)
+                    result = Algorithm.bubble(list_to_sort)
                 elif sort == "Insertion":
-                    result = Algorithm().insertion(list_to_sort)
+                    result = Algorithm.insertion(list_to_sort)
                 elif sort == "Merge":
-                    result = Algorithm().merge(list_to_sort)
+                    result = Algorithm.merge(list_to_sort)
                 elif sort == "Shell":
-                    result = Algorithm().shell(list_to_sort)
-                record = Sorting(
-                    algorithm=getattr(Sorting, sort),
-                    numbers=result[0],
-                )
-                record.save_base()
+                    result = Algorithm.shell(list_to_sort)
 
                 messages.success(
-                    request, f"\n\nExecution time is {round(result[1], 5)} seconds\n\n"
+                    request, f"Execution time is {round(result[1], 5)} seconds"
                 )
 
-        except:
-            messages.warning(
-                request, f"\n\nUpload correct file in txt format\n\n")
+        except Exception as e:
+            raise e
+            messages.warning(request, f"Upload correct file in txt format")
 
         return HttpResponseRedirect("../../")

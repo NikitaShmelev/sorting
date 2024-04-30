@@ -24,7 +24,4 @@ class Sorting(models.Model):
         ],
         default="Buble",
     )
-    numbers = models.TextField()
-    file = models.FileField()
-    # Explicitly define a primary key field
     id = models.AutoField(primary_key=True)

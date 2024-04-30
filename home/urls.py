@@ -5,5 +5,5 @@ from .views import HomePageView
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home_page"),
-    path("algorithm", HomePageView.algorithm, name="algorithm"),
+    # path("algorithm", HomePageView.algorithm, name="algorithm"),
 ]
