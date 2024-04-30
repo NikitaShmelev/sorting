@@ -6,8 +6,8 @@ from .models import Sorting
 @admin.register(Sorting)
 class SortingAdmin(admin.ModelAdmin):
     list_display = (
-        'algorithm', 
-        'numbers',
-        )
-    list_filter = ('algorithm',)
+        "algorithm",
+        "numbers",
+    )
+    list_filter = ("algorithm",)
     form = SortingForm

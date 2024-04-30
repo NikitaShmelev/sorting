@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home page</title>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('div input').change(function () {
+              $('div p').text(this.files.length + " file selected");
+            });
+          });
+    </script>
+    <div class='container'>
+            <h2 align='center'> What algorithm would you like to use for sorting?</h2>
+
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li{% if message.tags %} class="alert alert-{{ message.tags }}" role="alert" style="list-style: none; text-align:center;"{% endif %}>
+                    {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn-primary">Sort</button>
+                <button class="btn"><i class="fa fa-download"></i>
+                    <a class='download' href="static/files/example/example.txt" download>
+                        Download file example
+                    </a>
+                </button>
+            </form>
+            
+
+        
+       
+    </div>
+    
+    
+
+</body>
+</html>
