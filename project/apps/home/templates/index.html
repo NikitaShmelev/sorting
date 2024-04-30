@@ -28,7 +28,6 @@
             </ul>
             {% endif %}
         <form action="{% url 'algorithm' %}" method='POST' enctype="multipart/form-data">
-
             {% csrf_token %}
             <div class="select-box">
                 <select name="algorithm" id="select-box1" class="select">
