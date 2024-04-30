@@ -1,17 +1,15 @@
+from random import randint
 from typing import Any
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.views.generic import View
-from django.utils.decorators import method_decorator
+
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView, View
 
-
+from .algorithms import Algorithm
 from .forms import SortingForm
 from .models import Sorting
-from .algorithms import Algorithm
-
-from random import randint
-from django.views.generic import TemplateView
 
 
 class HomePageView(TemplateView):
@@ -51,6 +49,7 @@ class HomePageView(TemplateView):
                 )
 
         except:
-            messages.warning(request, f"\n\nUpload correct file in txt format\n\n")
+            messages.warning(
+                request, f"\n\nUpload correct file in txt format\n\n")
 
         return HttpResponseRedirect("../../")

@@ -1,2 +1,7 @@
 django
 psycopg2-binary
+pre-commit
+black
+flake8
+isort
+autopep8

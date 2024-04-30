@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 body {
-  background: #ffffff; 
+  background: #ffffff;
   color: #414141;
   font: 400 17px/2em 'Source Sans Pro', sans-serif;
 }
@@ -130,6 +130,3 @@ body {
   outline: none;
   opacity: 0;
 }
-
-
-

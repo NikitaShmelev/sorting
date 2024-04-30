@@ -1,6 +1,8 @@
-from .decorator import measure_execution_time
-from django.contrib import messages
 from os import listdir
+
+from django.contrib import messages
+
+from .decorator import measure_execution_time
 
 
 def create_file(list_to_sort):

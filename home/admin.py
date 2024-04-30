@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .forms import SortingForm
 from .models import Sorting
 
