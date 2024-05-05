@@ -1,12 +1,13 @@
 from os import listdir
 
 from django.contrib import messages
+from django.http import FileResponse
 
 from .decorator import measure_execution_time
 
 
 def create_file(list_to_sort):
-    file = open("project/apps/home/static/files/sorted_file.txt", "w")
+    file = open("home/static/files/sorted_file.txt", "w")
     file.write(",".join([str(i) for i in list_to_sort]))
     file.close()
 
@@ -14,7 +15,7 @@ def create_file(list_to_sort):
 class Algorithm:
 
     @measure_execution_time
-    def bubble(self, list_to_sort):
+    def bubble(list_to_sort):
         for i in range(len(list_to_sort)):
             for j in range(len(list_to_sort) - 1):
                 if list_to_sort[j] > list_to_sort[j + 1]:
@@ -22,10 +23,11 @@ class Algorithm:
                         list_to_sort[j + 1],
                         list_to_sort[j],
                     )
+        create_file(list_to_sort)
         return list_to_sort
 
     @measure_execution_time
-    def insertion(self, list_to_sort):
+    def insertion(list_to_sort):
         for i in range(1, len(list_to_sort)):
             key = list_to_sort[i]
             j = i - 1
@@ -37,7 +39,7 @@ class Algorithm:
         return list_to_sort
 
     @measure_execution_time
-    def merge(self, list_to_sort):
+    def merge(list_to_sort):
         def mergeSort(list_to_sort):
             if len(list_to_sort) > 1:
                 mid = len(list_to_sort) // 2
@@ -71,16 +73,20 @@ class Algorithm:
         return list_to_sort
 
     @measure_execution_time
-    def shell(self, list_to_sort):
-        gap = len(list_to_sort) // 2
-        while gap > 0:
-            for i in range(gap, len(list_to_sort)):
-                temp = list_to_sort[i]
-                j = i
-            while j >= gap and list_to_sort[j - gap] > temp:
-                list_to_sort[j] = list_to_sort[j - gap]
-                j = j - gap
-            list_to_sort[j] = temp
-            gap = gap // 2
+    def shell(list_to_sort):
+        def shell_sort(list_to_sort):
+            n = len(list_to_sort)
+            gap = n // 2
+
+            while gap > 0:
+                for i in range(gap, n):
+                    temp = list_to_sort[i]
+                    j = i
+                    while j >= gap and list_to_sort[j - gap] > temp:
+                        list_to_sort[j] = list_to_sort[j - gap]
+                        j -= gap
+                    list_to_sort[j] = temp
+                gap //= 2
+        shell_sort(list_to_sort)
         create_file(list_to_sort)
         return list_to_sort

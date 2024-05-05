@@ -22,8 +22,9 @@
                         {{ message }}
                         </li>
                     {% endfor %}
-                </ul>
                 {% endif %}
+                </ul>
+
                 <div class="col-md-6 offset-md-3">
                     <h2 align='center'> What algorithm would you like to use for sorting?</h2>
                     <form method="post" enctype="multipart/form-data" id="algorithmForm">
@@ -49,7 +50,26 @@
                                 Download file example
                             </a>
                         </button>
+
+
                     </form>
+
+
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    {% if messages %}
+
+                        {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                        <button class="btn" style='background-color:green;'><i class="fa fa-download"></i>
+                            <a class='download' href="static/files/sorted_file.txt" download>
+                                Download sorted file
+                            </a>
+                        </button>
+                        {% endif %}
+                        {% endfor %}
+
+                    {% endif %}
                 </div>
             </div>
 </body>
