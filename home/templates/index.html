@@ -50,18 +50,11 @@
                                 Download file example
                             </a>
                         </button>
-
-
-                    </form>
-
-
-                </div>
-                <div class="col-md-6 offset-md-3">
-                    {% if messages %}
+                        {% if messages %}
 
                         {% for message in messages %}
                         {% if message.tags == 'success' %}
-                        <button class="btn" style='background-color:green;'><i class="fa fa-download"></i>
+                        <button class="btn"  align="center" style='background-color:green;'><i class="fa fa-download"></i>
                             <a class='download' href="static/files/sorted_file.txt" download>
                                 Download sorted file
                             </a>
@@ -69,7 +62,9 @@
                         {% endif %}
                         {% endfor %}
 
-                    {% endif %}
+                        {% endif %}
+                    </form>
+
                 </div>
             </div>
 </body>
